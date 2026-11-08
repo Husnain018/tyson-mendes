@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c2c">
+  <meta name="description" content="A demonstration of an AI-powered law-firm receptionist voice experience.">
+  <title>Alex | Tyson &amp; Mendes Receptionist Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172338;
+      --muted: #64748b;
+      --navy: #101c2c;
+      --gold: #c9a86a;
+      --paper: #f5f7fa;
+      --line: #e3e8ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    .top-note {
+      background: #fff7e8;
+      color: #76551c;
+      text-align: center;
+      padding: 10px 18px;
+      font-size: 13px;
+      border-bottom: 1px solid #f0dfbd;
+    }
+
+    header {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: auto;
+      padding: 24px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      min-width: 0;
+      gap: 12px;
+      align-items: center;
+      font-weight: 650;
+      letter-spacing: .01em;
+    }
+
+    .mark {
+      flex: 0 0 50px;
+      width: 50px;
+      height: 42px;
+      border: 1px solid rgba(201, 168, 106, .7);
+      color: var(--gold);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      line-height: 1.4;
+    }
+
+    .brand-name {
+      display: block;
+    }
+
+    .brand-copy small {
+      display: block;
+      font-size: 12px;
+    }
+
+    .nav small {
+      color: #c6d0de;
+    }
+
+    .hero {
+      background: radial-gradient(circle at 80% 20%, #283d56 0, transparent 32%), var(--navy);
+      color: white;
+      padding: 72px 24px 88px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      margin: 18px 0;
+    }
+
+    .lead {
+      color: #d7deea;
+      font-size: 18px;
+      max-width: 620px;
+    }
+
+    .hint {
+      margin-top: 26px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      color: #f4ead7;
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 100%;
+      background: #8bc6a5;
+      box-shadow: 0 0 0 5px rgba(139, 198, 165, .13);
+    }
+
+    .demo-card {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, .22);
+    }
+
+    .avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
+      background: #f4ecdc;
+      color: #775b2c;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .demo-card h2 {
+      margin: 0 0 8px;
+      font-family: Georgia, serif;
+      font-size: 27px;
+      font-weight: 500;
+    }
+
+    .demo-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .demo-card .small-label {
+      margin-top: 23px;
+      color: #536278;
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: #35445a;
+    }
+
+    .num {
+      flex: 0 0 25px;
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #edf2f7;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: auto;
+      padding: 64px 24px;
+    }
+
+    .section-head {
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-family: Georgia, serif;
+      font-size: 35px;
+      font-weight: 500;
+      margin: 0 0 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .feature b {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .privacy {
+      margin-top: 28px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 18px 20px;
+      color: #526176;
+      font-size: 13px;
+    }
+
+    footer {
+      background: #eaf0f5;
+      border-top: 1px solid var(--line);
+      padding: 26px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    @media (max-width:780px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-note">Independent demonstration only — not an official Tyson &amp; Mendes website or endorsement.
+  </div>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="mark">T&amp;M</div>
+        <div class="brand-copy"><span class="brand-name">TYSON &amp; MENDES</span><small>Alex · Receptionist Experience
+            Demo</small></div>
+      </div>
+      <small>AI voice receptionist concept</small>
+    </div>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Virtual receptionist demonstration</div>
+          <h1>Meet Alex.<br>A calmer first point of contact.</h1>
+          <p class="lead">Explore a voice-receptionist concept designed to greet callers, understand why they are
+            calling, and capture a clear message for the appropriate team.</p>
+          <div class="hint"><span class="dot"></span> Use the voice button at the bottom-right to start a demo
+            conversation.</div>
+        </div>
+        <aside class="demo-card">
+          <div class="avatar">A</div>
+          <h2>Alex, virtual receptionist</h2>
+          <p>Professional, warm and organised. Alex asks one question at a time and confirms the caller's message before
+            ending the conversation.</p>
+          <div class="small-label">What this demo is designed to show</div>
+          <div class="steps">
+            <div class="step"><span class="num">1</span><span>Greets the caller and identifies their caller type.</span>
+            </div>
+            <div class="step"><span class="num">2</span><span>Collects contact details and a brief, non-confidential
+                reason for calling.</span></div>
+            <div class="step"><span class="num">3</span><span>Flags stated court dates, hearings or deadlines as
+                urgent.</span></div>
+            <div class="step"><span class="num">4</span><span>Reads the message back for confirmation.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </header>
+  <main>
+    <section class="section-head">
+      <div class="eyebrow" style="color:#9a7841">Demo capabilities</div>
+      <h2>A focused inbound-call experience</h2>
+      <p>This prototype illustrates how a voice agent can support a receptionist workflow. It does not connect callers
+        to attorneys or make legal decisions.</p>
+    </section>
+    <section class="grid">
+      <article class="feature"><b>Caller identification</b>
+        <p>Recognises the purpose of the inquiry and captures the caller's name, organisation and callback details when
+          appropriate.</p>
+      </article>
+      <article class="feature"><b>Structured messages</b>
+        <p>Organises the requested person, brief reason for calling, callback preference and urgency into a consistent
+          summary.</p>
+      </article>
+      <article class="feature"><b>Clear boundaries</b>
+        <p>No live transfers, no legal advice, no promises of representation and no confirmation that documents have
+          been received or served.</p>
+      </article>
+    </section>
+    <div class="privacy"><strong>Demo privacy notice:</strong> Do not share real client names, case facts, medical
+      details, confidential information or urgent legal deadlines in this demonstration. Use fictional test details
+      only. This page is not an official firm communication channel. Before any real deployment, the firm must approve
+      the platform, call-summary storage, transcript handling, retention and recording settings. Audio recording must
+      remain disabled unless the firm expressly approves it.</div>
+  </main>
+  <footer>
+    <div class="footer-inner"><span>Independent AI receptionist prototype</span><span>Not legal advice · Not an official
+        firm website</span></div>
+  </footer>
+
+  <!-- DOGRAH WIDGET: Paste the complete embed snippet copied from Dograh here, immediately before </body>.
+       Do not paste private API keys or service credentials into this public page. -->
+
+</body>
+
+
+<!-- Dograh Widget -->
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://app.dograh.com/embed/dograh-widget.js?token=emb_o9RNAwOzNQvoqBu1FupQaj_zH-YldwMTNO30QVOIRoI&environment=production&apiEndpoint=https://api.dograh.com';
+    // Details about this visitor, available in your prompts as
+    // {{initial_context.page_url}}. Edit these or add your own.
+    js.setAttribute('data-dograh-context', JSON.stringify({
+      page_url: window.location.href,
+      today: new Date().toISOString().slice(0, 10)
+    }));
+    js.async = true;
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'dograh-widget'));
+</script>
+
+</html>
